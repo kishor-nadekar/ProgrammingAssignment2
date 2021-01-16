@@ -1,0 +1,55 @@
+---
+title: 'Developing Data Products : Week 2 Assignment'
+author: "Kishor Nadekar"
+date: "January 16, 2021"
+
+---
+
+
+## Introduction
+Let's create a map showing Ashtvinayak Ganapati Temples in Maharashtra, India.
+
+```{r , eval=TRUE}
+##Load the library Leaflet
+
+library(leaflet)
+
+Temple <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat = 18.276056 , lng = 74.321389 , popup ="Shri Mayureshwar Temple") %>%
+  addMarkers(lat = 18.444114 , lng = 74.726258 , popup ="Shri Siddhivinayak Temple") %>%
+  addMarkers(lat = 18.535882 , lng = 73.223785 , popup ="Shri Ballaleshwar Temple")  %>%
+  addMarkers(lat = 18.810708 , lng = 73.301441 , popup ="Shri Varad Vinayak Temple") %>%
+  addMarkers(lat = 18.523797 , lng = 74.046283 , popup ="Shri Chintamani Temple") %>%
+  addMarkers(lat = 19.242778 , lng = 73.885556 , popup ="Shri Girijatmaj Temple") %>%
+  addMarkers(lat = 19.188075 , lng = 73.959639 , popup ="Shri Vighneshwar Temple") %>%
+  addMarkers(lat = 18.750000 , lng = 74.233333 , popup ="Shri Mahaganpati Temple")
+
+Temple
+
+
+```
+
+## Mapping Clusters
+
+```{r, eval=TRUE}
+df <- data.frame(lat = runif(1000, min= 18.90, max=18.99),
+                 long = runif(1000, min=73.10, max=73.15))
+df %>%
+  leaflet()%>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+
+```
+
+## Mapping Circle Markers
+
+```{r, eval=TRUE}
+cm <- data.frame(lat = runif(20, min= 18.95, max=18.99),
+                 long = runif(20, min=73.10, max=73.15))
+cm %>%
+  leaflet()%>%
+  addTiles() %>%
+  addMarkers(clusterOptions = markerClusterOptions())
+
+```
